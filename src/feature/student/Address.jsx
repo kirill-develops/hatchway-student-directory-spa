@@ -16,6 +16,7 @@ export function Addresses({ addressData }) {
     content = (
       <p>
         Email:
+        {' '}
         <a href={`mailto: ${addressData}`} rel="noreferrer" target="_blank">{addressData}</a>
       </p>
     );

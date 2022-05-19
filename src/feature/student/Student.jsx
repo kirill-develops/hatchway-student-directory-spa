@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Styles from './student.module.scss';
 import { Addresses } from './Address';
 import findAverage from './findAverage';
 
@@ -10,32 +12,38 @@ function Student({ studentData }) {
   const averageGrade = findAverage(grades);
 
   return (
-    <summary>
-      <img src={`${pic}`} alt={`${firstName} ${lastName} avatar`} />
-      <h3>
-        {firstName}
-        {' '}
-        {lastName}
-      </h3>
-      <address>
-        <Addresses addressData={email} />
-      </address>
-      <p>
-        Company:
-        {' '}
-        {company}
-      </p>
-      <p>
-        Skill:
-        {' '}
-        {skill}
-      </p>
-      <p>
-        Average:
-        {' '}
-        {averageGrade}
-        %
-      </p>
+    <summary className={Styles.card}>
+      <img
+        src={`${pic}`}
+        alt={`${firstName} ${lastName} avatar`}
+        className={Styles.avatar}
+      />
+      <content className={Styles.details}>
+        <h3 className={Styles.name}>
+          {firstName}
+          {' '}
+          {lastName}
+        </h3>
+        <address>
+          <Addresses addressData={email} />
+        </address>
+        <p>
+          Company:
+          {' '}
+          {company}
+        </p>
+        <p>
+          Skill:
+          {' '}
+          {skill}
+        </p>
+        <p>
+          Average:
+          {' '}
+          {averageGrade}
+          %
+        </p>
+      </content>
     </summary>
   );
 }
