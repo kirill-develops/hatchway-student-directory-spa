@@ -22,7 +22,7 @@ const staggeredBaseQuery = retry(
   },
 );
 
-//function to create proper tags for each data point
+// function to create proper tags for each data point
 function providesList(resultsWithIds, tagType) {
   return resultsWithIds
     ? [
