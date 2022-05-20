@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useGetAllStudentsQuery } from './app/apiSlice';
 
-import './styles/App.scss';
 import Student from './feature/student/Student';
 import SearchBar from './components/SearchBar/SearchBar';
 
