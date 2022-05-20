@@ -27,7 +27,9 @@ function Tags({ id, tags }) {
     }
   }
 
-  const formatedTags = tags?.map((tag) => <h4 className={Styles.tag}>{tag}</h4>);
+  const formatedTags = tags?.map(
+    (tag) => <h4 key={tag} className={Styles.tag}>{tag}</h4>,
+  );
 
   return (
     <div className={Styles.column_flex}>

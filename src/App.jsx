@@ -12,17 +12,24 @@ function App() {
 
   // state variable to handle search value and changing it
   const [searchName, setSearchName] = useState('');
+  const [searchTag, setSearchTag] = useState('');
 
   // selecting all records from our previous data that match our search
   const { studentSearch } = useGetAllStudentsQuery(undefined, {
     selectFromResult: ({ data }) => ({
       studentSearch: data?.filter((record) => {
-        const records = record.firstName.toLocaleLowerCase()
+        // const lowerFirstName =
+
+        const recordsMatchingName = (record.firstName.toLocaleLowerCase()
           .startsWith(searchName.toLocaleLowerCase())
           || record.lastName.toLocaleLowerCase()
-            .startsWith(searchName.toLocaleLowerCase());
+            .startsWith(searchName.toLocaleLowerCase()));
 
-        return records;
+        const recordsMatchingTags = searchTag
+          ? record.tags.some((tag) => tag.toLocaleLowerCase().startsWith(searchTag.toLocaleLowerCase()))
+          : true;
+
+        return recordsMatchingName && recordsMatchingTags;
       }),
     }),
   });
@@ -47,6 +54,11 @@ function App() {
         search={searchName}
         setSearch={setSearchName}
         placeholder="Search by name"
+      />
+      <SearchBar
+        search={searchTag}
+        setSearch={setSearchTag}
+        placeholder="Search by tag"
       />
       {content}
     </div>
