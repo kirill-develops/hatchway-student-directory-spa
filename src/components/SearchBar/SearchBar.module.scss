@@ -1,0 +1,14 @@
+.search_wrapper {
+  margin: 0 1rem;
+  padding: 1.25rem 0 0.5rem;
+  border-bottom: 1px solid rgb(127, 127, 127);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.search {
+  border: none;
+  outline: none;
+  width: 100%;
+}
