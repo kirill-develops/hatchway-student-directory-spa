@@ -41,7 +41,7 @@ export const apiSlice = createApi({
       query: () => 'https://api.hatchways.io/assessment/students',
       transformResponse: (responseData) => responseData.students?.sort(
         (a, b) => a.id.localeCompare(b.id),
-      ),
+      ).map((each) => ({ ...each, tags: [] })),
       providesTags: (result) => providesList(result.ids, 'Student'),
     }),
   }),
