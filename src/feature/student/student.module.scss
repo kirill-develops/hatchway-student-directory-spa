@@ -1,3 +1,4 @@
+@use './tags'as *;
 @use '../../styles/partials/breakpoints'as*;
 
 .card {
@@ -15,6 +16,11 @@
   }
 }
 
+.column_flex {
+  display: flex;
+  flex-direction: column;
+}
+
 .avatar {
   height: 10rem;
   width: 10rem;
@@ -26,7 +32,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 2rem;
 }
 

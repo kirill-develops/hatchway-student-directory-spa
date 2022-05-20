@@ -1,7 +1,7 @@
 import React from 'react';
 
 // React Component returning formatted address
-export function Addresses({ addressData }) {
+function Addresses({ addressData }) {
   // create Boolean variables based on if addressData is a list or a single item
   const typeArray = Array.isArray(addressData);
   const typeString = typeof String(addressData) === 'string';

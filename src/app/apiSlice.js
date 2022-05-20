@@ -44,12 +44,6 @@ export const apiSlice = createApi({
       ),
       providesTags: (result) => providesList(result.ids, 'Student'),
     }),
-    // * For Step5
-    // addTag: builder.mutation({
-    //   queryFn: (state, { studentId, tags = [] }) => {
-    //     // ToDo find student from state with studentID, if tags exsists, add to student
-    //   }
-    // })
   }),
 });
 

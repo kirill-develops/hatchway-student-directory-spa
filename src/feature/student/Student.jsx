@@ -2,13 +2,14 @@ import React, { useReducer } from 'react';
 import { GoPlus, GoDash } from 'react-icons/go';
 
 import Styles from './student.module.scss';
-import { Addresses } from './Address';
+import Addresses from './Address';
+import Tags from './Tags';
 import findAverage from './findAverage';
 
 // React Component returning formatted Student Data
 function Student({ studentData }) {
   const {
-    _city, company, email, firstName, grades, _id, lastName, pic, skill,
+    company, email, firstName, grades, id, lastName, pic, skill, tags,
   } = studentData;
   const averageGrade = findAverage(grades);
 
@@ -34,7 +35,7 @@ function Student({ studentData }) {
         alt={`${firstName} ${lastName} avatar`}
         className={Styles.avatar}
       />
-      <content className={Styles.details}>
+      <main className={Styles.details}>
         <header className={Styles.header}>
           <h3 className={Styles.name}>
             {firstName}
@@ -69,7 +70,8 @@ function Student({ studentData }) {
           %
         </p>
         {testScores}
-      </content>
+        <Tags id={id} tags={tags} />
+      </main>
     </summary>
   );
 }
