@@ -25,4 +25,4 @@ function Addresses({ addressData }) {
   return content;
 }
 
-export default Addresses;
+export default React.memo(Addresses);

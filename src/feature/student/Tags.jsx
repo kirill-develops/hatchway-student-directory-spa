@@ -16,11 +16,7 @@ function Tags({ id, tags }) {
         apiSlice.util.updateQueryData('getAllStudents', undefined, (draftStudents) => {
           const student = draftStudents.find((studentRecord) => studentRecord.id === id);
 
-          if (student.tags) {
-            student.tags.push(tag);
-          } else if (!student.tags) {
-            student.tags = [tag];
-          }
+          student.tags.push(tag);
         }),
       );
       setTag('');
@@ -48,4 +44,4 @@ function Tags({ id, tags }) {
   );
 }
 
-export default Tags;
+export default React.memo(Tags);
