@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useId, useMemo, useReducer } from 'react';
 import { GoPlus, GoDash } from 'react-icons/go';
 
 import Styles from './student.module.scss';
@@ -9,24 +9,43 @@ import findAverage from './findAverage';
 // React Component returning formatted Student Data
 function Student({ studentData }) {
   const {
-    company, email, firstName, grades, id, lastName, pic, skill, tags,
+    company,
+    email,
+    firstName,
+    grades,
+    id,
+    lastName,
+    pic,
+    skill,
+    tags,
   } = studentData;
-  const averageGrade = findAverage(grades);
+  const averageGrade = useMemo(
+    () => findAverage(grades),
+    [grades],
+  );
 
   const [isOpen, setIsOpen] = useReducer((prev) => !prev, false);
 
-  const icon = isOpen ? <GoDash size={54} color="rgb(127,127,127)" /> : <GoPlus size={54} color="rgb(127,127,127)" />;
+  const icon = useMemo(
+    () => (isOpen
+      ? <GoDash size={54} className={Styles.icon} />
+      : <GoPlus size={54} className={Styles.icon} />),
+    [isOpen],
+  );
 
-  const testScores = isOpen ? grades.map((grade, i) => (
-    <p>
-      Test
-      {' '}
-      {i + 1}
-      {' '}
-      {grade}
-      %
-    </p>
-  )) : '';
+  const testScores = useMemo(
+    () => (isOpen ? grades.map((grade, i) => (
+      <p key={() => useId()}>
+        Test
+        {' '}
+        {i + 1}
+        {' '}
+        {grade}
+        %
+      </p>
+    )) : ''),
+    [isOpen],
+  );
 
   return (
     <summary className={Styles.card}>
@@ -76,4 +95,4 @@ function Student({ studentData }) {
   );
 }
 
-export default Student;
+export default React.memo(Student);

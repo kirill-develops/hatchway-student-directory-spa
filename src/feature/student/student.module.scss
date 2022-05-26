@@ -75,3 +75,12 @@ a {
 address {
   font-style: normal;
 }
+
+.icon {
+  color: rgb(127, 127, 127);
+
+  &:hover {
+    cursor: pointer;
+    color: black;
+  }
+}
