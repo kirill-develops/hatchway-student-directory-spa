@@ -18,12 +18,16 @@ function App() {
   const { studentSearch } = useGetAllStudentsQuery(undefined, {
     selectFromResult: ({ data }) => ({
       studentSearch: data?.filter((record) => {
-        // const lowerFirstName =
+        const { firstName, lastName } = record;
+        const nameArr = searchName.length > 0
+          ? searchName.split(' ').filter((name) => name !== '') : searchName.split(' ');
+        const multiSearch = nameArr.length > 1;
 
-        const recordsMatchingName = (record.firstName.toLocaleLowerCase()
-          .startsWith(searchName.toLocaleLowerCase())
-          || record.lastName.toLocaleLowerCase()
-            .startsWith(searchName.toLocaleLowerCase()));
+        const recordsMatchingName = multiSearch
+          ? (nameArr.some((name) => (firstName.toLocaleLowerCase().startsWith(name.toLocaleLowerCase()))))
+          && nameArr.some((name) => (lastName.toLocaleLowerCase().startsWith(name.toLocaleLowerCase())))
+          : (nameArr.some((name) => firstName.toLocaleLowerCase().startsWith(name.toLocaleLowerCase())))
+          || nameArr.some((name) => lastName.toLocaleLowerCase().startsWith(name.toLocaleLowerCase()));
 
         const recordsMatchingTags = searchTag
           ? record.tags.some((tag) => tag.toLocaleLowerCase().startsWith(searchTag.toLocaleLowerCase()))
@@ -65,4 +69,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);
